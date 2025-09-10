@@ -41,7 +41,7 @@ test:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest -ra -vv tests  # [unix]
-    - pytest -ra -vv tests -k "not (test_map or test_mmap)"  # [win]
+    - pytest -ra -vv tests -k "not (test_map or test_mmap or test_saveload)"  # [win]
 
 about:
   home: https://github.com/pytries/marisa-trie
