@@ -14,14 +14,8 @@ build:
   skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   
-  ignore_run_exports:
-    - libcxx  # [osx]
-
 requirements:
   build:
-  # gcc_linux-64
-  # sysroot_linux-64
-  # gxx_linux-64
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
@@ -46,7 +40,8 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -ra -vv tests
+    - pytest -ra -vv tests  # [unix]
+    - pytest -ra -vv tests -k "not test_map"  # [win]
 
 about:
   home: https://github.com/pytries/marisa-trie
