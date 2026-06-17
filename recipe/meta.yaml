@@ -1,13 +1,13 @@
 {% set name = "marisa-trie" %}
-{% set version = "1.3.1" %}
+{% set version = "1.4.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: 97107fd12f30e4f8fea97790343a2d2d9a79d93697fe14e1b6f6363c984ff85b
+  sha256: 44ce3bdbeb7c950d463e460184fc3e18702df9ef0edb826bac672fd789fb1d20
 
 build:
   number: 0
@@ -26,6 +26,8 @@ requirements:
     - cython >=3.1.3
   run:
     - python
+  run-constrained:
+    - hypothesis >=6.136.9 # [py>=313]
 
 test:
   source_files:
@@ -52,7 +54,7 @@ about:
     - marisa-trie/COPYING.md
   summary: Static memory-efficient and fast Trie-like structures for Python
   description: |
-    Static memory-efficient Trie-like structures for Python (3.8+)
+    Static memory-efficient Trie-like structures for Python (3.9+)
     based on marisa-trie C++ library.
     String data in a MARISA-trie may take up to 50x-100x less memory than
     in a standard Python dict; the raw lookup speed is comparable; trie also
