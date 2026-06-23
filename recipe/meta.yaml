@@ -1,5 +1,5 @@
 {% set name = "marisa-trie" %}
-{% set version = "1.4.1" %}
+{% set version = "1.4.0" %}
 
 package:
   name: {{ name }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: 44ce3bdbeb7c950d463e460184fc3e18702df9ef0edb826bac672fd789fb1d20
+  sha256: 20dd1a9035c5cb225c6eeb8e516ebced9497bf0b48d60e9b556f38d8cdf76df8
 
 build:
   number: 0
   skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  
+
 requirements:
   build:
     - {{ stdlib("c") }}
@@ -27,7 +27,7 @@ requirements:
   run:
     - python
   run-constrained:
-    - hypothesis >=6.136.9 # [py>=313]
+    - hypothesis >=6.136.9  # [py>=313]
 
 test:
   source_files:
